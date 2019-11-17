@@ -1,0 +1,4 @@
+Um parque novo procurou facilitar a vida de pessoas com deficiência que queriam acessar a ele, mostrando quais os melhores caminhos em relação a acessibilidade entre os locais dentro dele. Esses locais eram o banheiro, a praça de alimentação, a roda gigante, a montanha russa, a tirolesa e o arvorismo. Além disso também foi considerado o portão de entrada/saída como um local essencial para constar aqui.
+Para isso o parque usou o algoritmo de Dijkstra, que usava os locais como vértices e os caminhos como arestas. 
+Dessa forma o frequentador com deficiência poderia acessar o serviço oferecido pelo parque, para informar onde estava e de acordo com onde estava, era informado a ele os melhores caminhos em relação a acessibilidade para ir a outros locais do parque.
+
