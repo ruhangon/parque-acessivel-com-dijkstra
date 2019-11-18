@@ -1,3 +1,4 @@
+package grafos;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,7 +9,7 @@ import java.util.Set;
 public class Grafo {
 	private static final int UNDEFINED = -1;
 	private int vertices[][];
-	private String descricoes[][]; 
+	private String descricoes[][];
 
 	public Grafo(int numVertices) {
 		vertices = new int[numVertices][numVertices];
@@ -34,6 +35,32 @@ public class Grafo {
 
 	public int getCusto(int vertice1, int vertice2) {
 		return vertices[vertice1][vertice2];
+	}
+
+	// retorna uma mensagem informando peso e o que há no caminho, em relação ao
+	// peso
+	public String getPesoComMensagem(int vertice1, int vertice2) {
+		if (vertices[vertice1][vertice2] == 1) {
+			String mensagem = "peso 1. Caminho plano ou de rampas com pouca inclinação e contém piso tatil";
+			return mensagem;
+		}
+		if (vertices[vertice1][vertice2] == 2) {
+			String mensagem = "peso 2. Caminho plano ou com rampas de pouca inclinação, sem auxílio de piso tátil";
+			return mensagem;
+		}
+		if (vertices[vertice1][vertice2] == 3) {
+			String mensagem = "peso 3. Caminho com rampas bem inclinadas (maior ou igual a 45 graus)";
+			return mensagem;
+		}
+		if (vertices[vertice1][vertice2] == 4) {
+			String mensagem = "peso 4. Caminho pouco acidentado (contém brita ou algum tipo de piso com diferentes inclinações)";
+			return mensagem;
+		}
+		if (vertices[vertice1][vertice2] == 5) {
+			String mensagem = "peso 5. Caminho com escadas";
+			return mensagem;
+		}
+		return "";
 	}
 
 	// retorna a descrição da aresta
@@ -115,4 +142,3 @@ public class Grafo {
 	}
 
 }
-

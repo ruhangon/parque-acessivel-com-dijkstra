@@ -2,6 +2,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import grafos.Grafo;
+import grafos.Parque;
+import grafos.Vertice;
+
 // classe que será usada para testar parques diversos
 // vértices serão os locais, como banheiro, tirolesa, lanchonete, dentre outros
 // arestas serão os caminhos e seus pesos serão de acordo com a acessibilidade do caminho
@@ -163,20 +167,6 @@ public class Main {
 					// se origem for diferente de destino mostra o print com ->
 					if (origem != a)
 						System.out.print(v.getNome((i), listaVertices) + " -> ");
-				}
-				// descrição do caminho
-				for (Integer j : grafo.caminho(origem, a)) {
-					if (grafo.getDescricao(j, a) != null) {
-						// se origem for diferente de destino e o i atual for igual ao destino, então
-						// mostra print sem o -> e sai do laço
-						if ((j == a) && (origem != a)) {
-							System.out.println(grafo.getDescricao(j, a));
-							break;
-						}
-						// se origem for diferente de destino mostra o print com ->
-						if (origem != a)
-							System.out.println(grafo.getDescricao(j, a) + ", ");
-					}
 				}
 			}
 

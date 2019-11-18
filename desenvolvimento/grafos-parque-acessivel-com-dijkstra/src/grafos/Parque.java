@@ -1,3 +1,4 @@
+package grafos;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -5,6 +6,7 @@ public class Parque {
 	public static int definePeso() {
 		Scanner scan = new Scanner(System.in);
 		int op = 0;
+		boolean valido=false;
 		String pesos = "1. Caminho plano ou de rampas com pouca inclinação e contém piso tatil"
 				+ "\n2. Caminho plano ou com rampas de pouca inclinação, sem auxílio de piso tátil "
 				+ "\n3. Caminho com rampas bem inclinadas (maior ou igual a 45 graus)"
@@ -17,6 +19,7 @@ public class Parque {
 				System.out.print("resposta: ");
 				op = scan.nextInt();
 				scan.nextLine();
+				valido = validaPeso(op);
 				if ((op < 1) || (op > 5))
 					System.out.println("opção inválida");
 			} catch (InputMismatchException e) {
@@ -24,15 +27,22 @@ public class Parque {
 				scan.nextLine();
 				op = 0;
 			}
-		} while ((op < 1) || (op > 5));
+		} while (valido != true);
 		return op;
 	}
 
+	public static boolean validaPeso(int peso) {
+		if ((peso >= 1) && (peso <= 5))
+			return true;
+		return false;
+	}
+
 	public static String defineDescricao() {
-		Scanner scan=new Scanner(System.in);
-		System.out.println("Digite uma descrição desse caminho, que possa auxiliar melhor o usuário se ele irá por esse caminho ou não");
+		Scanner scan = new Scanner(System.in);
+		System.out.println(
+				"Digite uma descrição desse caminho, que possa auxiliar melhor o usuário se ele irá por esse caminho ou não");
 		System.out.print("descrição: ");
-		String descricao=scan.nextLine();
+		String descricao = scan.nextLine();
 		return descricao;
 	}
 
