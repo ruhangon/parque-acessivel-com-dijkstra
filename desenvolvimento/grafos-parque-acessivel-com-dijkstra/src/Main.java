@@ -126,7 +126,10 @@ public class Main {
 			} while ((arestaDestino < 1) || (arestaDestino > listaVertices.size()));
 			// define peso da aresta
 			valorAresta = Parque.definePeso();
-			descricaoAresta = "";
+			// pede uma descrição para a aresta
+			System.out.println("Digite uma descrição para esse caminho passado");
+			System.out.print("descrição: ");
+			descricaoAresta = scan.nextLine();
 			grafo.criaAresta(arestaOrigem - 1, arestaDestino - 1, valorAresta, descricaoAresta, grafoOrientado);
 			do {
 				System.out.println("Você deseja cadastrar mais arestas? (S/N)");
@@ -147,8 +150,10 @@ public class Main {
 
 		// informa os melhores caminhos, segundo a acessibilidade
 		System.out.println("Caminho mais curto, partindo do local -> " + (v.getNome(origem, listaVertices)));
+		System.out.println(
+				"Modelo \nPrimeira linha: locais a passar \nSegunda linha: Informações sobre acessibilidade do caminho \nTerceira linha: Descrições de auxilio do caminho");
+		System.out.println();
 
-		// pegará os locais passados pelo melhor caminho atual
 		ArrayList<Integer> caminhoPassado = new ArrayList<Integer>();
 
 		for (int a = 0; a < listaVertices.size(); a++) {
@@ -168,11 +173,23 @@ public class Main {
 			// agora de acordo com o caminho mostra o que tem nele, os seus pesos e
 			// informações
 			for (int j = 0; j < (caminhoPassado.size() - 1); j++) {
+				// se for a última passada do laço passa por esse trecho
 				if (j == (caminhoPassado.size() - 2)) {
 					System.out.println(grafo.getPesoComMensagem(caminhoPassado.get(j), (caminhoPassado.get(j + 1))));
 					break;
 				}
 				System.out.print(grafo.getPesoComMensagem(caminhoPassado.get(j), (caminhoPassado.get(j + 1))) + ", ");
+			}
+			// agora de acordo com o caminho mostra as descrições de cada um. Usado para
+			// auxiliar ainda mais a pessoa com deficiência
+			for (int k = 0; k < (caminhoPassado.size() - 1); k++) {
+				// se for a última passada do laço passa por esse trecho
+				if (k == (caminhoPassado.size() - 2)) {
+					System.out.println(grafo.getDescricao(caminhoPassado.get(k), (caminhoPassado.get(k + 1))));
+					System.out.println();
+					break;
+				}
+				System.out.print(grafo.getDescricao(caminhoPassado.get(k), (caminhoPassado.get(k + 1))) + ", ");
 			}
 			caminhoPassado.clear(); // limpa o caminho atual para pegar as informações do próximo
 		}

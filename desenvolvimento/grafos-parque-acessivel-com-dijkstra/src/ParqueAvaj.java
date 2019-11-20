@@ -6,7 +6,7 @@ import grafos.Grafo;
 import grafos.Parque;
 import grafos.Vertice;
 
-public class ParqueAjav {
+public class ParqueAvaj {
 	private static ArrayList<Vertice> listaVertices = new ArrayList<Vertice>();
 	int[] vertices;
 
@@ -32,7 +32,7 @@ public class ParqueAjav {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 
-		System.out.println("        PARQUE AJAV");
+		System.out.println("        PARQUE AVAJ");
 		System.out.println("\nSeja bem vindo, visitante");
 
 		System.out.println("Qual o seu nome?");
@@ -87,7 +87,7 @@ public class ParqueAjav {
 		int valorAresta = 1;
 		if (Parque.validaPeso(valorAresta) == false)
 			System.out.println("Há um peso inválido");
-		String descricaoAresta = "Caminho tranquilo e de fácil acesso para o restaurante";
+		String descricaoAresta = "Caminho tranquilo e de fácil acesso";
 		grafo.criaAresta(arestaOrigem - 1, arestaDestino - 1, valorAresta, descricaoAresta, grafoOrientado);
 		contArestas++;
 
@@ -97,7 +97,7 @@ public class ParqueAjav {
 		valorAresta = 2;
 		if (Parque.validaPeso(valorAresta) == false)
 			System.out.println("Há um peso inválido");
-		descricaoAresta = "Caminho curto. Você passará próximo a uma placa do parque entre o caminho e chegará ao banheiro";
+		descricaoAresta = "Caminho curto. Você passará próximo a uma placa do parque entre o caminho";
 		grafo.criaAresta(arestaOrigem - 1, arestaDestino - 1, valorAresta, descricaoAresta, grafoOrientado);
 		contArestas++;
 
@@ -107,7 +107,7 @@ public class ParqueAjav {
 		valorAresta = 5;
 		if (Parque.validaPeso(valorAresta) == false)
 			System.out.println("Há um peso inválido");
-		descricaoAresta = "Caminho com escadaria curta até a montanha russa";
+		descricaoAresta = "Caminho com escadaria curta";
 		grafo.criaAresta(arestaOrigem - 1, arestaDestino - 1, valorAresta, descricaoAresta, grafoOrientado);
 		contArestas++;
 
@@ -117,7 +117,7 @@ public class ParqueAjav {
 		valorAresta = 2;
 		if (Parque.validaPeso(valorAresta) == false)
 			System.out.println("Há um peso inválido");
-		descricaoAresta = "Seguindo reto passando pelo caminho com árvores você chega a montanha russa";
+		descricaoAresta = "Siga reto passando pelo caminho com árvores";
 		grafo.criaAresta(arestaOrigem - 1, arestaDestino - 1, valorAresta, descricaoAresta, grafoOrientado);
 		contArestas++;
 
@@ -127,7 +127,7 @@ public class ParqueAjav {
 		valorAresta = 3;
 		if (Parque.validaPeso(valorAresta) == false)
 			System.out.println("Há um peso inválido");
-		descricaoAresta = "Suba a rampa com inclinação de 50 graus, passe pela placa de ferro e chegue a tirolesa";
+		descricaoAresta = "Há uma rampa com inclinação de 50 graus e uma placa de ferro";
 		grafo.criaAresta(arestaOrigem - 1, arestaDestino - 1, valorAresta, descricaoAresta, grafoOrientado);
 		contArestas++;
 
@@ -137,7 +137,7 @@ public class ParqueAjav {
 		valorAresta = 4;
 		if (Parque.validaPeso(valorAresta) == false)
 			System.out.println("Há um peso inválido");
-		descricaoAresta = "Siga reto pelo caminho de brita e encontre o seu destino, arvorismo";
+		descricaoAresta = "Há um caminho de brita";
 		grafo.criaAresta(arestaOrigem - 1, arestaDestino - 1, valorAresta, descricaoAresta, grafoOrientado);
 		contArestas++;
 
@@ -147,7 +147,7 @@ public class ParqueAjav {
 		valorAresta = 1;
 		if (Parque.validaPeso(valorAresta) == false)
 			System.out.println("Há um peso inválido");
-		descricaoAresta = "Siga pelo caminho de árvores, onde também há piso tátil para auxiliar até a montanha russa";
+		descricaoAresta = "Siga pelo caminho de árvores, onde também há piso tátil para auxiliar";
 		grafo.criaAresta(arestaOrigem - 1, arestaDestino - 1, valorAresta, descricaoAresta, grafoOrientado);
 		contArestas++;
 
@@ -157,7 +157,7 @@ public class ParqueAjav {
 		valorAresta = 2;
 		if (Parque.validaPeso(valorAresta) == false)
 			System.out.println("Há um peso inválido");
-		descricaoAresta = "Seguindo próximo ao muro do restaurante você encontrará uma atração, montanha russa";
+		descricaoAresta = "Siga reto passando pelo muro";
 		grafo.criaAresta(arestaOrigem - 1, arestaDestino - 1, valorAresta, descricaoAresta, grafoOrientado);
 		contArestas++;
 
@@ -167,7 +167,7 @@ public class ParqueAjav {
 		valorAresta = 5;
 		if (Parque.validaPeso(valorAresta) == false)
 			System.out.println("Há um peso inválido");
-		descricaoAresta = "Saindo da montanha russa, subindo as escadas e seguindo pelo caminho você chega a tirolesa";
+		descricaoAresta = "Há uma escada e um caminho longo";
 		grafo.criaAresta(arestaOrigem - 1, arestaDestino - 1, valorAresta, descricaoAresta, grafoOrientado);
 		contArestas++;
 
@@ -177,7 +177,7 @@ public class ParqueAjav {
 		valorAresta = 3;
 		if (Parque.validaPeso(valorAresta) == false)
 			System.out.println("Há um peso inválido");
-		descricaoAresta = "Seguindo pela direita, então subindo uma grande rampa, que tem uma parada e depois uma pequena rampa com inclinação alta, você chega ao arvorismo";
+		descricaoAresta = "Há um caminho com duas rampas, uma grande e uma pequena";
 		grafo.criaAresta(arestaOrigem - 1, arestaDestino - 1, valorAresta, descricaoAresta, grafoOrientado);
 		contArestas++;
 
@@ -187,7 +187,7 @@ public class ParqueAjav {
 		valorAresta = 5;
 		if (Parque.validaPeso(valorAresta) == false)
 			System.out.println("Há um peso inválido");
-		descricaoAresta = "Seguindo da entrada é possível se encontrar uma trilha que chega a uma escada e leva para a tirolesa";
+		descricaoAresta = "Há uma trilha e uma escada próxima a tirolesa";
 		grafo.criaAresta(arestaOrigem - 1, arestaDestino - 1, valorAresta, descricaoAresta, grafoOrientado);
 		contArestas++;
 
@@ -197,7 +197,7 @@ public class ParqueAjav {
 		valorAresta = 1;
 		if (Parque.validaPeso(valorAresta) == false)
 			System.out.println("Há um peso inválido");
-		descricaoAresta = "Saindo do banheiro passando pelos bancos do parque, você chegará a roda gigante";
+		descricaoAresta = "Há um caminho longo, com bancos para sentar no meio dele";
 		grafo.criaAresta(arestaOrigem - 1, arestaDestino - 1, valorAresta, descricaoAresta, grafoOrientado);
 		contArestas++;
 
@@ -210,6 +210,9 @@ public class ParqueAjav {
 		System.out.println("\n--------------------------\n");
 
 		System.out.println("Caminho mais curto, partindo do local -> " + (v.getNome(origem, listaVertices)));
+		System.out.println(
+				"Modelo \nPrimeira linha: locais a passar \nSegunda linha: Informações sobre acessibilidade do caminho \nTerceira linha: Descrições de auxilio do caminho");
+		System.out.println();
 
 		ArrayList<Integer> caminhoPassado = new ArrayList<Integer>();
 
@@ -230,16 +233,28 @@ public class ParqueAjav {
 			// agora de acordo com o caminho mostra o que tem nele, os seus pesos e
 			// informações
 			for (int j = 0; j < (caminhoPassado.size() - 1); j++) {
+				// se for a última passada do laço passa por esse trecho
 				if (j == (caminhoPassado.size() - 2)) {
 					System.out.println(grafo.getPesoComMensagem(caminhoPassado.get(j), (caminhoPassado.get(j + 1))));
 					break;
 				}
 				System.out.print(grafo.getPesoComMensagem(caminhoPassado.get(j), (caminhoPassado.get(j + 1))) + ", ");
 			}
+			// agora de acordo com o caminho mostra as descrições de cada um. Usado para
+			// auxiliar ainda mais a pessoa com deficiência
+			for (int k = 0; k < (caminhoPassado.size() - 1); k++) {
+				// se for a última passada do laço passa por esse trecho
+				if (k == (caminhoPassado.size() - 2)) {
+					System.out.println(grafo.getDescricao(caminhoPassado.get(k), (caminhoPassado.get(k + 1))));
+					System.out.println();
+					break;
+				}
+				System.out.print(grafo.getDescricao(caminhoPassado.get(k), (caminhoPassado.get(k + 1))) + ", ");
+			}
 			caminhoPassado.clear(); // limpa o caminho atual para pegar as informações do próximo
 		}
 
-		System.out.println("\n\nFim do programa");
+		System.out.println("\nFim do programa");
 
 	}
 }
