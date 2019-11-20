@@ -211,7 +211,7 @@ public class ParqueAjav {
 
 		System.out.println("Caminho mais curto, partindo do local -> " + (v.getNome(origem, listaVertices)));
 
-		int ant = -1; // pode ser necessário para ir descobrindo o caminho, para mostrar a mensagem sobre o peso junto com o caminho
+		ArrayList<Integer> caminhoPassado = new ArrayList<Integer>();
 
 		for (int a = 0; a < listaVertices.size(); a++) {
 			for (Integer i : grafo.caminho(origem, a)) {
@@ -219,15 +219,27 @@ public class ParqueAjav {
 				// mostra print sem o -> e sai do laço
 				if ((i == a) && (origem != a)) {
 					System.out.println(v.getNome((i), listaVertices));
+					caminhoPassado.add(i);
 					break;
 				}
-				// se origem for diferente de destino mostra o print com ->
 				if (origem != a) {
-					System.out
-							.print(v.getNome((i), listaVertices) + " -> " + grafo.getPesoComMensagem(i, a) + " -> ");
+					System.out.print(v.getNome((i), listaVertices) + " -> ");
+					caminhoPassado.add(i);
 				}
 			}
+			// agora de acordo com o caminho mostra o que tem nele, os seus pesos e
+			// informações
+			for (int j = 0; j < (caminhoPassado.size() - 1); j++) {
+				if (j == (caminhoPassado.size() - 2)) {
+					System.out.println(grafo.getPesoComMensagem(caminhoPassado.get(j), (caminhoPassado.get(j + 1))));
+					break;
+				}
+				System.out.print(grafo.getPesoComMensagem(caminhoPassado.get(j), (caminhoPassado.get(j + 1))) + ", ");
+			}
+			caminhoPassado.clear(); // limpa o caminho atual para pegar as informações do próximo
 		}
+
+		System.out.println("\n\nFim do programa");
 
 	}
 }

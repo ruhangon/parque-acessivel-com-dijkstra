@@ -9,6 +9,7 @@ import java.util.Set;
 public class Grafo {
 	private static final int UNDEFINED = -1;
 	private int vertices[][];
+	private List<Integer> caminho = new ArrayList<>();
 	private String descricoes[][];
 
 	public Grafo(int numVertices) {
@@ -131,7 +132,6 @@ public class Grafo {
 	}
 
 	private List<Integer> criaListadeCaminhos(int[] anterior, int u) {
-		List<Integer> caminho = new ArrayList<>();
 		caminho.add(u);
 		while (anterior[u] != UNDEFINED) {
 			caminho.add(anterior[u]);
