@@ -1,12 +1,14 @@
 package grafos;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Parque {
+	// método para definir o peso de um caminho
 	public static int definePeso() {
 		Scanner scan = new Scanner(System.in);
 		int op = 0;
-		boolean valido=false;
+		boolean valido = false;
 		String pesos = "1. Caminho plano ou de rampas com pouca inclinação e contém piso tatil"
 				+ "\n2. Caminho plano ou com rampas de pouca inclinação, sem auxílio de piso tátil "
 				+ "\n3. Caminho com rampas bem inclinadas (maior ou igual a 45 graus)"
@@ -31,6 +33,7 @@ public class Parque {
 		return op;
 	}
 
+	// se o peso é válido segundo a lista de pesos retorna true
 	public static boolean validaPeso(int peso) {
 		if ((peso >= 1) && (peso <= 5))
 			return true;

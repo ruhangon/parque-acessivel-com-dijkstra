@@ -1,16 +1,13 @@
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import grafos.Grafo;
 import grafos.Parque;
 import grafos.Vertice;
 
-// classe que será usada para testar parques diversos
-// vértices serão os locais, como banheiro, tirolesa, lanchonete, dentre outros
-// arestas serão os caminhos e seus pesos serão de acordo com a acessibilidade do caminho
 public class Main {
-
 	private static ArrayList<Vertice> listaVertices = new ArrayList<Vertice>();
 	int[] vertices;
 
@@ -36,140 +33,148 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 
-		System.out.println("        Parque acessível");
+		System.out.println("        PARQUE ACESSÍVEL COM DIJKSTRA");
 
 		System.out.println("\n--------------------------\n");
 
-		int contVertices = 0;
+		boolean grafoOrientado = false;
+		int op = -1;
 
-		// enquanto console estiver rodando
-		while (true) {
-			// PERGUNTA SE GRAFO É ORIENTADO OU NÃO
-			System.out.println("Todos os caminhos terão ida e volta? \n1 = Não | 2 = Sim");
-			// 1 = orientado, 2 = não orientado
-			System.out.println("Resposta: ");
-			String inputTipoGrafo = scan.nextLine().trim();
-			System.out.println("");
-			// default: orientado
-			Boolean grafoOrientado = true;
-			// atribui true or false para grafoOrientado
-
-			switch (inputTipoGrafo) {
-			case "1":
-				grafoOrientado = true;
-				break;
-
-			case "2":
-				grafoOrientado = false;
-				break;
+		// define se grafo será orientado ou não
+		do {
+			try {
+				System.out.println("O grafo será orientado ou não orientado? \n1. Orientado, 2. Não Orientado");
+				System.out.print("resposta: ");
+				op = scan.nextInt();
+				scan.nextLine();
+				if ((op < 1) || (op > 2))
+					System.out.println("opção inválida");
+			} catch (InputMismatchException e) {
+				System.out.println("opção inválida");
+				scan.nextLine();
+				op = -1;
 			}
+		} while ((op < 1) || (op > 2));
 
-			System.out.println("--------------------------\n");
+		if (op == 1)
+			grafoOrientado = true;
+		if (op == 2)
+			grafoOrientado = false;
 
-			// CADASTRA VÉRTICES
-			String pedeVertice2 = " ";
-			System.out.println("Informe os locais do parque para cadastrar, ex.: uma atração específica, um banheiro");
-			System.out.println("Parar deixe em branco");
+		System.out.println("\n--------------------------\n");
 
-			while (!pedeVertice2.equals("")) {
-				// pede vértices
-				System.out.print("Informe um local: ");
-				pedeVertice2 = scan.nextLine().trim();
-				if (!pedeVertice2.equals("")) {
-					Vertice v = new Vertice();
-					v.setNome(pedeVertice2);
-					// v.setNome(Integer.parseInt(pedeVertice2));
-					listaVertices.add(v);
-				}
-				contVertices++;
-			}
+		String novoLocal = "";
+		Vertice v;
+		String resposta = "S";
+		// cadastra os vértices
+		do {
+			System.out.println("Diga o nome do local que você quer cadastrar");
+			System.out.print("resposta: ");
+			novoLocal = scan.nextLine();
+			v = new Vertice();
+			v.setNome(novoLocal);
+			listaVertices.add(v);
+			do {
+				System.out.println("Você deseja cadastrar mais locais? (S/N)");
+				System.out.print("resposta: ");
+				resposta = scan.nextLine();
+			} while ((!resposta.equalsIgnoreCase("S")) && (!resposta.equalsIgnoreCase("N")));
+		} while (!resposta.equalsIgnoreCase("N"));
 
-			// cria grafo
-			Grafo grafo = new Grafo(contVertices); // cont = quantidade de vértices cadastrados
+		// cria grafo
+		Grafo grafo = new Grafo(listaVertices.size());
 
-			// CADASTRAR ARESTAS, OS CAMINHOS
-			String pedeArestas = " ";
-			String pedeValorArestas = " ";
-			Vertice v = new Vertice();
-			int arestaOrigem = 0;
-			int arestaDestino = 0;
-			int contArestas = 0;
+		System.out.println("\n--------------------------\n");
 
-			System.out.println("\n--------------------------\n");
-
+		int arestaOrigem = 0;
+		int arestaDestino = 0;
+		int valorAresta = 0;
+		String descricaoAresta = "";
+		resposta = "S";
+		// cria lista de arestas
+		do {
 			v.listaVertices(listaVertices);
-			System.out.println(
-					"Informe o local de origem e o local de destino referente ao caminho, segundo a posição na lista de locais cadastrados");
-			System.out.println("separados por vírgula, ex.: 1,2 - Parar deixe em branco");
-
-			while (!pedeArestas.equals("")) {
+			// aresta de origem
+			do {
 				try {
-					// PEDE PAR DE ARESTAS
-					System.out.print("Caminho: ");
-					pedeArestas = scan.nextLine().trim();
+					System.out.println("Digite a posição do local de origem, segundo a lista acima");
+					System.out.print("posição: ");
+					arestaOrigem = scan.nextInt();
+					scan.nextLine();
+					if ((arestaOrigem < 1) || (arestaOrigem > listaVertices.size()))
+						System.out.println("opção inválida");
+				} catch (InputMismatchException e) {
+					System.out.println("opção inválida");
+					scan.nextLine();
+					arestaOrigem = 0;
+				}
+			} while ((arestaOrigem < 1) || (arestaOrigem > listaVertices.size()));
+			// aresta de destino
+			do {
+				try {
+					System.out.println("Digite a posição do local de destino, segundo a lista acima");
+					System.out.print("posição: ");
+					arestaDestino = scan.nextInt();
+					scan.nextLine();
+					if ((arestaDestino < 1) || (arestaDestino > listaVertices.size()))
+						System.out.println("opção inválida");
+				} catch (InputMismatchException e) {
+					System.out.println("opção inválida");
+					scan.nextLine();
+					arestaDestino = 0;
+				}
+			} while ((arestaDestino < 1) || (arestaDestino > listaVertices.size()));
+			// define peso da aresta
+			valorAresta = Parque.definePeso();
+			descricaoAresta = "";
+			grafo.criaAresta(arestaOrigem - 1, arestaDestino - 1, valorAresta, descricaoAresta, grafoOrientado);
+			do {
+				System.out.println("Você deseja cadastrar mais arestas? (S/N)");
+				System.out.print("resposta: ");
+				resposta = scan.nextLine();
+			} while ((!resposta.equalsIgnoreCase("S")) && (!resposta.equalsIgnoreCase("N")));
+		} while (!resposta.equalsIgnoreCase("N"));
 
-					String[] dados = pedeArestas.split(",");
-					arestaOrigem = Integer.parseInt(dados[0]);
-					arestaDestino = Integer.parseInt(dados[1]);
+		System.out.println("\n--------------------------\n");
 
-					// PEDE VALOR DO PAR DE ARESTAS
-					// System.out.print("Valor do caminho escolhido segundo a lista de valores de
-					// caminhos (digite o valor inteiro): ");
-					// pedeArestas = scan.nextLine().trim();
-					// int valorAresta = Integer.parseInt(pedeArestas);
+		// SOLICITA PONTO INICIAL
+		v.listaVertices(listaVertices);
+		System.out.println();
+		System.out.println("Informe a posição do local onde você está");
+		int origem = leConsole("Local atual", scan);
 
-					int valorAresta = Parque.definePeso();
-					String descricaoAresta = Parque.defineDescricao();
+		System.out.println("\n--------------------------\n");
 
-					contArestas++; // contador
+		// informa os melhores caminhos, segundo a acessibilidade
+		System.out.println("Caminho mais curto, partindo do local -> " + (v.getNome(origem, listaVertices)));
 
-					// só aceita par
-					if (dados.length > 0 && dados.length <= 2) {
+		// pegará os locais passados pelo melhor caminho atual
+		ArrayList<Integer> caminhoPassado = new ArrayList<Integer>();
 
-						if (!pedeArestas.equals("")) {
-
-							for (int i = 0; i < contArestas; i++) {
-								grafo.criaAresta(arestaOrigem - 1, arestaDestino - 1, valorAresta, descricaoAresta,
-										grafoOrientado);
-							}
-						}
-
-					} else {
-						System.out.println("Precisa ser um caminho válido!");
-						pedeArestas = scan.nextLine().trim();
-					}
-
-				} catch (Exception e) {
-					System.out.println(
-							"O caminho não faz parte da lista de locais ou você digitou valores inválidos.\nCaso tenha utilizado a função SAIR, ignore a mensagem");
+		for (int a = 0; a < listaVertices.size(); a++) {
+			for (Integer i : grafo.caminho(origem, a)) {
+				// se origem for diferente de destino e o i atual for igual ao destino, então
+				// mostra print sem o -> e sai do laço
+				if ((i == a) && (origem != a)) {
+					System.out.println(v.getNome((i), listaVertices));
+					caminhoPassado.add(i);
+					break;
+				}
+				if (origem != a) {
+					System.out.print(v.getNome((i), listaVertices) + " -> ");
+					caminhoPassado.add(i);
 				}
 			}
-
-			System.out.println("\n--------------------------\n");
-
-			// SOLICITA PONTO INICIAL e mostra melhor caminho
-			v.listaVertices(listaVertices);
-			System.out.println("Informe a posição do local onde você está \n(deixe em branco para fechar)");
-			int origem = leConsole("Local atual", scan);
-
-			System.out.println("\n--------------------------\n");
-
-			System.out.println("Caminho mais curto, partindo do local -> " + (v.getNome(origem, listaVertices)));
-
-			for (int a = 0; a < contVertices; a++) {
-				for (Integer i : grafo.caminho(origem, a)) {
-					// se origem for diferente de destino e o i atual for igual ao destino, então
-					// mostra print sem o -> e sai do laço
-					if ((i == a) && (origem != a)) {
-						System.out.println(v.getNome((i), listaVertices));
-						break;
-					}
-					// se origem for diferente de destino mostra o print com ->
-					if (origem != a)
-						System.out.print(v.getNome((i), listaVertices) + " -> ");
+			// agora de acordo com o caminho mostra o que tem nele, os seus pesos e
+			// informações
+			for (int j = 0; j < (caminhoPassado.size() - 1); j++) {
+				if (j == (caminhoPassado.size() - 2)) {
+					System.out.println(grafo.getPesoComMensagem(caminhoPassado.get(j), (caminhoPassado.get(j + 1))));
+					break;
 				}
+				System.out.print(grafo.getPesoComMensagem(caminhoPassado.get(j), (caminhoPassado.get(j + 1))) + ", ");
 			}
-
+			caminhoPassado.clear(); // limpa o caminho atual para pegar as informações do próximo
 		}
 
 	}
